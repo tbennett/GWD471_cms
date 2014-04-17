@@ -7,14 +7,7 @@
 </head>
 
 <body>
-	<header>
-		<h1>Welcome to Widgco Widgets!</h1>
-        <nav>
-        	<a href="">Home</a>
-            <a href="">About!</a>
-            <a href="">Contact</a>
-        </nav>
-    </header>
+  <?php require_once('includes/header.php'); ?>
     
     <section>
     	<h2>Intro</h2>
@@ -24,9 +17,7 @@
        </p>
     </section>
     
-    <footer>
-    	<p>Widgco Widgets Inc.&trade; &copy;2014</p>
-    </footer>
+  <?php require_once('includes/footer.php'); ?>
     
 </body>
 </html>
