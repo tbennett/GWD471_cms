@@ -1,5 +1,5 @@
 #home .home_link, 
 #about .about_link, 
-#contact .contact_link {
-  color:red;
-}
+#contact .contact_link{color:red;}
+label {display:block;}
+.errors {display:block;color:red;}

@@ -39,12 +39,12 @@ function verifyEmail ($testString) {
 function verifyText ($testString) {
 	$hackish = array("javascript:","Javascript:","javaScript:","JavaScript:", "(","{");
 	$safeReplace = array("#","#","#","#","&#40;","&#123;");
-	
+
 	$myString = str_replace($hackish,$safeReplace,$testString);
 	$myString =  strip_tags($myString, '<h3><h4><ul><li><em><strong><blockquote><q><div><span><p><a><br>');
 	$myString = htmlspecialchars($myString);
 	//$myString = mysql_real_escape_string($myString);
-	
+
 	return 	$myString;
 }
 

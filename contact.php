@@ -1,29 +1,29 @@
-  <?php
+ <?php
 
     if(@$_POST['submit'])
     {
       require_once('includes/validation.php');
       
       $name = $_POST['name'];
-      $email = $_POST['email'];
-      $comments = $_POST['comments'];
+      $email = trim($_POST['email']);
+      $comments = trim($_POST['comments']);
       $errors = array();
       
       // test user info for non-valid data
       $valid = verifyAlphaNum($name);
       if(!$valid)
       {
-         $errors[] = "Name must be letter, numbers, or spaces"; 
+         $errors['name'] = "Name must be letter, numbers, or spaces"; 
       }
       
       $valid = verifyEmail($email);
       if(!$valid)
       {
-        $errors[] = "Please provide a vaild email address - test@test.com";
+        $errors['email'] = "Please provide a vaild email address - test@test.com";
       }
       
       $comments = verifyText($comments);
-	
+
 	    //if any errors, don't send email - else send email
 	    if(count($errors) === 0)
 	    {
@@ -71,17 +71,21 @@
           <legend>Contact Us</legend>
           <p>
             <label for="name">Name: </label>
-            <input type="text" name="name" placeholder="Type your name here" />
+            <span class="errors"><?php echo @$errors['name']; ?></span>
+            <input type="text" name="name" placeholder="Type your name here"
+             value="<?php echo @$_POST['name']; ?>" />
           </p>
           
           <p>
             <label for="email">Email: </label>
-            <input type="text" name="email" placeholder="Type your email here" />
+            <span class="errors"><?php echo @$errors['email']; ?></span>
+            <input type="text" name="email" placeholder="Type your email here"
+             value="<?php echo @$_POST['email']; ?>" />
           </p>
           
           <p>
             <label for="email">Comments: </label>
-            <textarea name="comments" placeholder="type your message here"></textarea>
+            <textarea name="comments" placeholder="type your message here"><?php echo @$_POST['comments']; ?></textarea>
           </p>
           
           <p>
@@ -96,4 +100,3 @@
     
 </body>
 </html>
-
