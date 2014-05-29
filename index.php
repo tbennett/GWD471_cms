@@ -1,5 +1,29 @@
-  
+  <?php require_once('../../config.php'); ?>
   <?php $page_id = 'home'; ?>
+
+  <?php
+    //get all content related to the selected page
+    $sql = "SELECT *
+    FROM site_content
+    WHERE page_name='home'";
+
+    $myData = $db->query($sql);
+
+    //create container for each piece of data
+    while($row = $myData->fetch_assoc())
+    {
+      if($row['section_name'] === 'blurb')  
+      {
+        $blurb = $row['content'];
+      }
+
+      if($row['section_name'] === 'intro')  
+      {
+        $intro = $row['content'];
+      }
+    }
+  ?>
+
   <?php require_once('includes/top.php'); ?>
   <?php require_once('includes/header.php'); ?>
     
@@ -7,8 +31,11 @@
     	<h2>Intro</h2>
         <p>
         <img src="images/ceo.jpg" alt="my pic" />
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <?php echo $intro ?>
        </p>
+      <p>
+        <?php echo $blurb ?>
+      </p>
     </section>
     
   <?php require_once('includes/footer.php'); ?>

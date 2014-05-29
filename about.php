@@ -2,6 +2,28 @@
   <?php $page_id = 'about'; ?>
   <?php require_once('../../config.php'); ?>
   <?php
+    //get all content related to the selected page
+    $sql1 = "SELECT *
+    FROM site_content
+    WHERE page_name='about'";
+
+    $myData1 = $db->query($sql1);
+
+    //create container for each piece of data
+    while($row = $myData1->fetch_assoc())
+    {
+      if($row['section_name'] === 'blurb')  
+      {
+        $blurb = $row['content'];
+      }
+
+      if($row['section_name'] === 'intro')  
+      {
+        $intro = $row['content'];
+      }
+    }
+  ?>
+  <?php
     //interact with DB
     $sql = 'SELECT * FROM widgets';
     
@@ -18,6 +40,8 @@
     
     <section>
     	<h2>About Us</h2>
+      <p><?php echo $intro; ?></p>
+      
         <?php
           echo '<div id="products">';
           while($row = $myData->fetch_assoc())
